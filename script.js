@@ -12,7 +12,7 @@ function getComputerChoice() {
   }
 }
 
-function roundOfRPS(playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
   playerSelection =
     playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
 
@@ -37,22 +37,56 @@ function roundOfRPS(playerSelection, computerSelection) {
   }
 }
 
-function game() {
-  for (let i = 1; i <= 5; i++) {
-    console.log(
-      roundOfRPS(
-        prompt("please enter your choice of Rock, Paper, or Scissors"),
-        getComputerChoice()
-      )
-    );
-  }
-  if (playerScore > computerScore) {
-    return `congratulation you beat the CPU ${playerScore}-${computerScore}`;
-  } else if (playerScore < computerScore) {
-    return `Damn you lost to the CPU ${playerScore}-${computerScore}`;
+for (i = 1; i <= 3; i++) {
+  let btn = document.createElement('button');
+
+  if (i === 1) {
+    btn.classList.add("rock");
+  } else if (i === 2) {
+    btn.classList.add("paper");
   } else {
-    return `You tied with the CPU ${playerScore}-${computerScore}`;
+    btn.classList.add("scissors");
   }
+
+  document.querySelector('body').append(btn);
 }
 
-console.log(game());
+let button1 = document.querySelector('.rock')
+let button2 = document.querySelector('.paper')
+let button3 = document.querySelector('.scissors')
+
+button1.textContent = 'Rock'
+button2.textContent = 'Paper'
+button3.textContent = 'Scissors'
+
+let allButtons = document.querySelectorAll('button')
+
+for (const btn of allButtons) {
+  btn.addEventListener('click', (e) => {
+    console.log(playRound(`${e.target.className}`, getComputerChoice()))
+
+  })
+}
+
+
+
+
+// function game() {
+//   for (let i = 1; i <= 5; i++) {
+//     console.log(
+//       roundOfRPS(
+//         prompt("please enter your choice of Rock, Paper, or Scissors"),
+//         getComputerChoice()
+//       )
+//     );
+//   }
+//   if (playerScore > computerScore) {
+//     return `congratulation you beat the CPU ${playerScore}-${computerScore}`;
+//   } else if (playerScore < computerScore) {
+//     return `Damn you lost to the CPU ${playerScore}-${computerScore}`;
+//   } else {
+//     return `You tied with the CPU ${playerScore}-${computerScore}`;
+//   }
+// }
+
+// console.log(game());
